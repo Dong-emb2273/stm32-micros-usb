@@ -1,0 +1,410 @@
+ARM GAS  /tmp/ccmxVtoc.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.eabi_attribute 27, 1
+   3              		.eabi_attribute 28, 1
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.file	"joint_acc.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.rodata.init_robot_joints.str1.4,"aMS",%progbits,1
+  18              		.align	2
+  19              	.LC0:
+  20 0000 72696768 		.ascii	"right_hip_yaw\000"
+  20      745F6869 
+  20      705F7961 
+  20      7700
+  21 000e 0000     		.align	2
+  22              	.LC1:
+  23 0010 72696768 		.ascii	"right_hip_roll\000"
+  23      745F6869 
+  23      705F726F 
+  23      6C6C00
+  24 001f 00       		.align	2
+  25              	.LC2:
+  26 0020 72696768 		.ascii	"right_hip_pitch\000"
+  26      745F6869 
+  26      705F7069 
+  26      74636800 
+  27              		.align	2
+  28              	.LC3:
+  29 0030 72696768 		.ascii	"right_knee\000"
+  29      745F6B6E 
+  29      656500
+  30 003b 00       		.align	2
+  31              	.LC4:
+  32 003c 72696768 		.ascii	"right_ankle\000"
+  32      745F616E 
+  32      6B6C6500 
+  33              		.align	2
+  34              	.LC5:
+  35 0048 6C656674 		.ascii	"left_hip_yaw\000"
+  35      5F686970 
+  35      5F796177 
+  35      00
+  36 0055 000000   		.align	2
+  37              	.LC6:
+  38 0058 6C656674 		.ascii	"left_hip_roll\000"
+  38      5F686970 
+  38      5F726F6C 
+  38      6C00
+ARM GAS  /tmp/ccmxVtoc.s 			page 2
+
+
+  39 0066 0000     		.align	2
+  40              	.LC7:
+  41 0068 6C656674 		.ascii	"left_hip_pitch\000"
+  41      5F686970 
+  41      5F706974 
+  41      636800
+  42              		.section	.text.init_robot_joints,"ax",%progbits
+  43              		.align	1
+  44              		.global	init_robot_joints
+  45              		.arch armv7e-m
+  46              		.syntax unified
+  47              		.thumb
+  48              		.thumb_func
+  49              		.fpu fpv4-sp-d16
+  51              	init_robot_joints:
+  52              	.LFB134:
+  53              		.file 1 "Core/Src/joint_acc.c"
+   1:Core/Src/joint_acc.c **** #include <stdint.h>
+   2:Core/Src/joint_acc.c **** #include <string.h>
+   3:Core/Src/joint_acc.c **** 
+   4:Core/Src/joint_acc.c **** #include "joint_acc.h"
+   5:Core/Src/joint_acc.c **** #include "structs.h"
+   6:Core/Src/joint_acc.c **** 
+   7:Core/Src/joint_acc.c **** void init_robot_joints(void) {
+  54              		.loc 1 7 30 view -0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 70B5     		push	{r4, r5, r6, lr}
+  59              	.LCFI0:
+  60              		.cfi_def_cfa_offset 16
+  61              		.cfi_offset 4, -16
+  62              		.cfi_offset 5, -12
+  63              		.cfi_offset 6, -8
+  64              		.cfi_offset 14, -4
+   8:Core/Src/joint_acc.c ****     memset(robot_joints, 0, sizeof(robot_joints));
+  65              		.loc 1 8 5 view .LVU1
+  66 0002 434C     		ldr	r4, .L3
+  67 0004 4FF43472 		mov	r2, #720
+  68 0008 0021     		movs	r1, #0
+  69 000a 2046     		mov	r0, r4
+  70 000c FFF7FEFF 		bl	memset
+  71              	.LVL0:
+   9:Core/Src/joint_acc.c ****     memset(joint_map, 0, sizeof(joint_map));
+  72              		.loc 1 9 5 view .LVU2
+  73 0010 404D     		ldr	r5, .L3+4
+  74 0012 3C22     		movs	r2, #60
+  75 0014 0021     		movs	r1, #0
+  76 0016 2846     		mov	r0, r5
+  77 0018 FFF7FEFF 		bl	memset
+  78              	.LVL1:
+  10:Core/Src/joint_acc.c **** 
+  11:Core/Src/joint_acc.c ****     // Right Leg
+  12:Core/Src/joint_acc.c ****     robot_joints[0].ros.name   = "right_hip_yaw";
+  79              		.loc 1 12 5 view .LVU3
+  80              		.loc 1 12 32 is_stmt 0 view .LVU4
+  81 001c 3E4B     		ldr	r3, .L3+8
+ARM GAS  /tmp/ccmxVtoc.s 			page 3
+
+
+  82 001e A362     		str	r3, [r4, #40]
+  13:Core/Src/joint_acc.c ****     robot_joints[0].cmd.can_id = 0x010;
+  83              		.loc 1 13 5 is_stmt 1 view .LVU5
+  84              		.loc 1 13 32 is_stmt 0 view .LVU6
+  85 0020 1023     		movs	r3, #16
+  86 0022 6361     		str	r3, [r4, #20]
+  14:Core/Src/joint_acc.c ****     robot_joints[0].cmd.kp     = 50.0f;
+  87              		.loc 1 14 5 is_stmt 1 view .LVU7
+  88              		.loc 1 14 32 is_stmt 0 view .LVU8
+  89 0024 3D4A     		ldr	r2, .L3+12
+  90 0026 A260     		str	r2, [r4, #8]	@ float
+  15:Core/Src/joint_acc.c ****     robot_joints[0].cmd.kd     = 1.5f;
+  91              		.loc 1 15 5 is_stmt 1 view .LVU9
+  92              		.loc 1 15 32 is_stmt 0 view .LVU10
+  93 0028 4FF07F53 		mov	r3, #1069547520
+  94 002c E360     		str	r3, [r4, #12]	@ float
+  16:Core/Src/joint_acc.c ****     joint_map[(robot_joints[0].cmd.can_id >> 4) - 1] = &robot_joints[0];
+  95              		.loc 1 16 5 is_stmt 1 view .LVU11
+  96              		.loc 1 16 54 is_stmt 0 view .LVU12
+  97 002e 2C60     		str	r4, [r5]
+  17:Core/Src/joint_acc.c **** 
+  18:Core/Src/joint_acc.c ****     robot_joints[1].ros.name   = "right_hip_roll";
+  98              		.loc 1 18 5 is_stmt 1 view .LVU13
+  99              		.loc 1 18 32 is_stmt 0 view .LVU14
+ 100 0030 3B49     		ldr	r1, .L3+16
+ 101 0032 2167     		str	r1, [r4, #112]
+  19:Core/Src/joint_acc.c ****     robot_joints[1].cmd.can_id = 0x020;
+ 102              		.loc 1 19 5 is_stmt 1 view .LVU15
+ 103              		.loc 1 19 32 is_stmt 0 view .LVU16
+ 104 0034 2021     		movs	r1, #32
+ 105 0036 E165     		str	r1, [r4, #92]
+  20:Core/Src/joint_acc.c ****     robot_joints[1].cmd.kp     = 50.0f;
+ 106              		.loc 1 20 5 is_stmt 1 view .LVU17
+ 107              		.loc 1 20 32 is_stmt 0 view .LVU18
+ 108 0038 2265     		str	r2, [r4, #80]	@ float
+  21:Core/Src/joint_acc.c ****     robot_joints[1].cmd.kd     = 1.5f;
+ 109              		.loc 1 21 5 is_stmt 1 view .LVU19
+ 110              		.loc 1 21 32 is_stmt 0 view .LVU20
+ 111 003a 6365     		str	r3, [r4, #84]	@ float
+  22:Core/Src/joint_acc.c ****     joint_map[(robot_joints[1].cmd.can_id >> 4) - 1] = &robot_joints[1];
+ 112              		.loc 1 22 5 is_stmt 1 view .LVU21
+ 113              		.loc 1 22 54 is_stmt 0 view .LVU22
+ 114 003c 04F14801 		add	r1, r4, #72
+ 115 0040 6960     		str	r1, [r5, #4]
+  23:Core/Src/joint_acc.c **** 
+  24:Core/Src/joint_acc.c ****     robot_joints[2].ros.name   = "right_hip_pitch";
+ 116              		.loc 1 24 5 is_stmt 1 view .LVU23
+ 117              		.loc 1 24 32 is_stmt 0 view .LVU24
+ 118 0042 3849     		ldr	r1, .L3+20
+ 119 0044 C4F8B810 		str	r1, [r4, #184]
+  25:Core/Src/joint_acc.c ****     robot_joints[2].cmd.can_id = 0x030;
+ 120              		.loc 1 25 5 is_stmt 1 view .LVU25
+ 121              		.loc 1 25 32 is_stmt 0 view .LVU26
+ 122 0048 3021     		movs	r1, #48
+ 123 004a C4F8A410 		str	r1, [r4, #164]
+  26:Core/Src/joint_acc.c ****     robot_joints[2].cmd.kp     = 50.0f;
+ 124              		.loc 1 26 5 is_stmt 1 view .LVU27
+ARM GAS  /tmp/ccmxVtoc.s 			page 4
+
+
+ 125              		.loc 1 26 32 is_stmt 0 view .LVU28
+ 126 004e C4F89820 		str	r2, [r4, #152]	@ float
+  27:Core/Src/joint_acc.c ****     robot_joints[2].cmd.kd     = 1.5f;
+ 127              		.loc 1 27 5 is_stmt 1 view .LVU29
+ 128              		.loc 1 27 32 is_stmt 0 view .LVU30
+ 129 0052 C4F89C30 		str	r3, [r4, #156]	@ float
+  28:Core/Src/joint_acc.c ****     joint_map[(robot_joints[2].cmd.can_id >> 4) - 1] = &robot_joints[2];
+ 130              		.loc 1 28 5 is_stmt 1 view .LVU31
+ 131              		.loc 1 28 54 is_stmt 0 view .LVU32
+ 132 0056 04F19001 		add	r1, r4, #144
+ 133 005a A960     		str	r1, [r5, #8]
+  29:Core/Src/joint_acc.c **** 
+  30:Core/Src/joint_acc.c ****     robot_joints[3].ros.name   = "right_knee";
+ 134              		.loc 1 30 5 is_stmt 1 view .LVU33
+ 135              		.loc 1 30 32 is_stmt 0 view .LVU34
+ 136 005c 3248     		ldr	r0, .L3+24
+ 137 005e C4F80001 		str	r0, [r4, #256]
+  31:Core/Src/joint_acc.c ****     robot_joints[3].cmd.can_id = 0x040;
+ 138              		.loc 1 31 5 is_stmt 1 view .LVU35
+ 139              		.loc 1 31 32 is_stmt 0 view .LVU36
+ 140 0062 4021     		movs	r1, #64
+ 141 0064 C4F8EC10 		str	r1, [r4, #236]
+  32:Core/Src/joint_acc.c ****     robot_joints[3].cmd.kp     = 50.0f;
+ 142              		.loc 1 32 5 is_stmt 1 view .LVU37
+ 143              		.loc 1 32 32 is_stmt 0 view .LVU38
+ 144 0068 C4F8E020 		str	r2, [r4, #224]	@ float
+  33:Core/Src/joint_acc.c ****     robot_joints[3].cmd.kd     = 1.5f;
+ 145              		.loc 1 33 5 is_stmt 1 view .LVU39
+ 146              		.loc 1 33 32 is_stmt 0 view .LVU40
+ 147 006c C4F8E430 		str	r3, [r4, #228]	@ float
+  34:Core/Src/joint_acc.c ****     joint_map[(robot_joints[3].cmd.can_id >> 4) - 1] = &robot_joints[3];
+ 148              		.loc 1 34 5 is_stmt 1 view .LVU41
+ 149              		.loc 1 34 54 is_stmt 0 view .LVU42
+ 150 0070 04F1D801 		add	r1, r4, #216
+ 151 0074 E960     		str	r1, [r5, #12]
+  35:Core/Src/joint_acc.c **** 
+  36:Core/Src/joint_acc.c ****     robot_joints[4].ros.name   = "right_ankle";
+ 152              		.loc 1 36 5 is_stmt 1 view .LVU43
+ 153              		.loc 1 36 32 is_stmt 0 view .LVU44
+ 154 0076 2D49     		ldr	r1, .L3+28
+ 155 0078 C4F84811 		str	r1, [r4, #328]
+  37:Core/Src/joint_acc.c ****     robot_joints[4].cmd.can_id = 0x050;
+ 156              		.loc 1 37 5 is_stmt 1 view .LVU45
+ 157              		.loc 1 37 32 is_stmt 0 view .LVU46
+ 158 007c 5026     		movs	r6, #80
+ 159 007e C4F83461 		str	r6, [r4, #308]
+  38:Core/Src/joint_acc.c ****     robot_joints[4].cmd.kp     = 50.0f;
+ 160              		.loc 1 38 5 is_stmt 1 view .LVU47
+ 161              		.loc 1 38 32 is_stmt 0 view .LVU48
+ 162 0082 C4F82821 		str	r2, [r4, #296]	@ float
+  39:Core/Src/joint_acc.c ****     robot_joints[4].cmd.kd     = 1.5f;
+ 163              		.loc 1 39 5 is_stmt 1 view .LVU49
+ 164              		.loc 1 39 32 is_stmt 0 view .LVU50
+ 165 0086 C4F82C31 		str	r3, [r4, #300]	@ float
+  40:Core/Src/joint_acc.c ****     joint_map[(robot_joints[4].cmd.can_id >> 4) - 1] = &robot_joints[4];
+ 166              		.loc 1 40 5 is_stmt 1 view .LVU51
+ 167              		.loc 1 40 54 is_stmt 0 view .LVU52
+ARM GAS  /tmp/ccmxVtoc.s 			page 5
+
+
+ 168 008a 04F59076 		add	r6, r4, #288
+ 169 008e 2E61     		str	r6, [r5, #16]
+  41:Core/Src/joint_acc.c **** 
+  42:Core/Src/joint_acc.c ****     // Left Leg
+  43:Core/Src/joint_acc.c ****     robot_joints[5].ros.name   = "left_hip_yaw";
+ 170              		.loc 1 43 5 is_stmt 1 view .LVU53
+ 171              		.loc 1 43 32 is_stmt 0 view .LVU54
+ 172 0090 274E     		ldr	r6, .L3+32
+ 173 0092 C4F89061 		str	r6, [r4, #400]
+  44:Core/Src/joint_acc.c ****     robot_joints[5].cmd.can_id = 0x060;
+ 174              		.loc 1 44 5 is_stmt 1 view .LVU55
+ 175              		.loc 1 44 32 is_stmt 0 view .LVU56
+ 176 0096 6026     		movs	r6, #96
+ 177 0098 C4F87C61 		str	r6, [r4, #380]
+  45:Core/Src/joint_acc.c ****     robot_joints[5].cmd.kp     = 50.0f;
+ 178              		.loc 1 45 5 is_stmt 1 view .LVU57
+ 179              		.loc 1 45 32 is_stmt 0 view .LVU58
+ 180 009c C4F87021 		str	r2, [r4, #368]	@ float
+  46:Core/Src/joint_acc.c ****     robot_joints[5].cmd.kd     = 1.5f;
+ 181              		.loc 1 46 5 is_stmt 1 view .LVU59
+ 182              		.loc 1 46 32 is_stmt 0 view .LVU60
+ 183 00a0 C4F87431 		str	r3, [r4, #372]	@ float
+  47:Core/Src/joint_acc.c ****     joint_map[(robot_joints[5].cmd.can_id >> 4) - 1] = &robot_joints[5];
+ 184              		.loc 1 47 5 is_stmt 1 view .LVU61
+ 185              		.loc 1 47 54 is_stmt 0 view .LVU62
+ 186 00a4 04F5B476 		add	r6, r4, #360
+ 187 00a8 6E61     		str	r6, [r5, #20]
+  48:Core/Src/joint_acc.c **** 
+  49:Core/Src/joint_acc.c ****     robot_joints[6].ros.name   = "left_hip_roll";
+ 188              		.loc 1 49 5 is_stmt 1 view .LVU63
+ 189              		.loc 1 49 32 is_stmt 0 view .LVU64
+ 190 00aa 224E     		ldr	r6, .L3+36
+ 191 00ac C4F8D861 		str	r6, [r4, #472]
+  50:Core/Src/joint_acc.c ****     robot_joints[6].cmd.can_id = 0x070;
+ 192              		.loc 1 50 5 is_stmt 1 view .LVU65
+ 193              		.loc 1 50 32 is_stmt 0 view .LVU66
+ 194 00b0 7026     		movs	r6, #112
+ 195 00b2 C4F8C461 		str	r6, [r4, #452]
+  51:Core/Src/joint_acc.c ****     robot_joints[6].cmd.kp     = 50.0f;
+ 196              		.loc 1 51 5 is_stmt 1 view .LVU67
+ 197              		.loc 1 51 32 is_stmt 0 view .LVU68
+ 198 00b6 C4F8B821 		str	r2, [r4, #440]	@ float
+  52:Core/Src/joint_acc.c ****     robot_joints[6].cmd.kd     = 1.5f;
+ 199              		.loc 1 52 5 is_stmt 1 view .LVU69
+ 200              		.loc 1 52 32 is_stmt 0 view .LVU70
+ 201 00ba C4F8BC31 		str	r3, [r4, #444]	@ float
+  53:Core/Src/joint_acc.c ****     joint_map[(robot_joints[6].cmd.can_id >> 4) - 1] = &robot_joints[6];
+ 202              		.loc 1 53 5 is_stmt 1 view .LVU71
+ 203              		.loc 1 53 54 is_stmt 0 view .LVU72
+ 204 00be 04F5D876 		add	r6, r4, #432
+ 205 00c2 AE61     		str	r6, [r5, #24]
+  54:Core/Src/joint_acc.c **** 
+  55:Core/Src/joint_acc.c ****     robot_joints[7].ros.name   = "left_hip_pitch";
+ 206              		.loc 1 55 5 is_stmt 1 view .LVU73
+ 207              		.loc 1 55 32 is_stmt 0 view .LVU74
+ 208 00c4 1C4E     		ldr	r6, .L3+40
+ 209 00c6 C4F82062 		str	r6, [r4, #544]
+ARM GAS  /tmp/ccmxVtoc.s 			page 6
+
+
+  56:Core/Src/joint_acc.c ****     robot_joints[7].cmd.can_id = 0x080;
+ 210              		.loc 1 56 5 is_stmt 1 view .LVU75
+ 211              		.loc 1 56 32 is_stmt 0 view .LVU76
+ 212 00ca 8026     		movs	r6, #128
+ 213 00cc C4F80C62 		str	r6, [r4, #524]
+  57:Core/Src/joint_acc.c ****     robot_joints[7].cmd.kp     = 50.0f;
+ 214              		.loc 1 57 5 is_stmt 1 view .LVU77
+ 215              		.loc 1 57 32 is_stmt 0 view .LVU78
+ 216 00d0 C4F80022 		str	r2, [r4, #512]	@ float
+  58:Core/Src/joint_acc.c ****     robot_joints[7].cmd.kd     = 1.5f;
+ 217              		.loc 1 58 5 is_stmt 1 view .LVU79
+ 218              		.loc 1 58 32 is_stmt 0 view .LVU80
+ 219 00d4 C4F80432 		str	r3, [r4, #516]	@ float
+  59:Core/Src/joint_acc.c ****     joint_map[(robot_joints[7].cmd.can_id >> 4)] = &robot_joints[7];
+ 220              		.loc 1 59 5 is_stmt 1 view .LVU81
+ 221              		.loc 1 59 50 is_stmt 0 view .LVU82
+ 222 00d8 04F5FC76 		add	r6, r4, #504
+ 223 00dc 2E62     		str	r6, [r5, #32]
+  60:Core/Src/joint_acc.c **** 
+  61:Core/Src/joint_acc.c **** 	robot_joints[8].ros.name   = "right_knee";
+ 224              		.loc 1 61 2 is_stmt 1 view .LVU83
+ 225              		.loc 1 61 29 is_stmt 0 view .LVU84
+ 226 00de C4F86802 		str	r0, [r4, #616]
+  62:Core/Src/joint_acc.c ****     robot_joints[8].cmd.can_id = 0x090;
+ 227              		.loc 1 62 5 is_stmt 1 view .LVU85
+ 228              		.loc 1 62 32 is_stmt 0 view .LVU86
+ 229 00e2 9020     		movs	r0, #144
+ 230 00e4 C4F85402 		str	r0, [r4, #596]
+  63:Core/Src/joint_acc.c ****     robot_joints[8].cmd.kp     = 50.0f;
+ 231              		.loc 1 63 5 is_stmt 1 view .LVU87
+ 232              		.loc 1 63 32 is_stmt 0 view .LVU88
+ 233 00e8 C4F84822 		str	r2, [r4, #584]	@ float
+  64:Core/Src/joint_acc.c ****     robot_joints[8].cmd.kd     = 1.5f;
+ 234              		.loc 1 64 5 is_stmt 1 view .LVU89
+ 235              		.loc 1 64 32 is_stmt 0 view .LVU90
+ 236 00ec C4F84C32 		str	r3, [r4, #588]	@ float
+  65:Core/Src/joint_acc.c ****     joint_map[(robot_joints[8].cmd.can_id >> 4)] = &robot_joints[8];
+ 237              		.loc 1 65 5 is_stmt 1 view .LVU91
+ 238              		.loc 1 65 50 is_stmt 0 view .LVU92
+ 239 00f0 04F51070 		add	r0, r4, #576
+ 240 00f4 6862     		str	r0, [r5, #36]
+  66:Core/Src/joint_acc.c **** 
+  67:Core/Src/joint_acc.c ****     robot_joints[9].ros.name   = "right_ankle";
+ 241              		.loc 1 67 5 is_stmt 1 view .LVU93
+ 242              		.loc 1 67 32 is_stmt 0 view .LVU94
+ 243 00f6 C4F8B012 		str	r1, [r4, #688]
+  68:Core/Src/joint_acc.c ****     robot_joints[9].cmd.can_id = 0x0A0;
+ 244              		.loc 1 68 5 is_stmt 1 view .LVU95
+ 245              		.loc 1 68 32 is_stmt 0 view .LVU96
+ 246 00fa A021     		movs	r1, #160
+ 247 00fc C4F89C12 		str	r1, [r4, #668]
+  69:Core/Src/joint_acc.c ****     robot_joints[9].cmd.kp     = 50.0f;
+ 248              		.loc 1 69 5 is_stmt 1 view .LVU97
+ 249              		.loc 1 69 32 is_stmt 0 view .LVU98
+ 250 0100 C4F89022 		str	r2, [r4, #656]	@ float
+  70:Core/Src/joint_acc.c ****     robot_joints[9].cmd.kd     = 1.5f;
+ 251              		.loc 1 70 5 is_stmt 1 view .LVU99
+ARM GAS  /tmp/ccmxVtoc.s 			page 7
+
+
+ 252              		.loc 1 70 32 is_stmt 0 view .LVU100
+ 253 0104 C4F89432 		str	r3, [r4, #660]	@ float
+  71:Core/Src/joint_acc.c ****     joint_map[(robot_joints[4].cmd.can_id >> 4)] = &robot_joints[9];
+ 254              		.loc 1 71 5 is_stmt 1 view .LVU101
+ 255              		.loc 1 71 50 is_stmt 0 view .LVU102
+ 256 0108 04F52274 		add	r4, r4, #648
+ 257 010c 6C61     		str	r4, [r5, #20]
+  72:Core/Src/joint_acc.c **** 
+  73:Core/Src/joint_acc.c **** }
+ 258              		.loc 1 73 1 view .LVU103
+ 259 010e 70BD     		pop	{r4, r5, r6, pc}
+ 260              	.L4:
+ 261              		.align	2
+ 262              	.L3:
+ 263 0110 00000000 		.word	robot_joints
+ 264 0114 00000000 		.word	joint_map
+ 265 0118 00000000 		.word	.LC0
+ 266 011c 00004842 		.word	1112014848
+ 267 0120 10000000 		.word	.LC1
+ 268 0124 20000000 		.word	.LC2
+ 269 0128 30000000 		.word	.LC3
+ 270 012c 3C000000 		.word	.LC4
+ 271 0130 48000000 		.word	.LC5
+ 272 0134 58000000 		.word	.LC6
+ 273 0138 68000000 		.word	.LC7
+ 274              		.cfi_endproc
+ 275              	.LFE134:
+ 277              		.text
+ 278              	.Letext0:
+ 279              		.file 2 "Core/Inc/joint_acc.h"
+ 280              		.file 3 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 281              		.file 4 "Core/Inc/structs.h"
+ 282              		.file 5 "<built-in>"
+ARM GAS  /tmp/ccmxVtoc.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 joint_acc.c
+     /tmp/ccmxVtoc.s:18     .rodata.init_robot_joints.str1.4:0000000000000000 $d
+     /tmp/ccmxVtoc.s:43     .text.init_robot_joints:0000000000000000 $t
+     /tmp/ccmxVtoc.s:51     .text.init_robot_joints:0000000000000000 init_robot_joints
+     /tmp/ccmxVtoc.s:263    .text.init_robot_joints:0000000000000110 $d
+
+UNDEFINED SYMBOLS
+memset
+robot_joints
+joint_map
